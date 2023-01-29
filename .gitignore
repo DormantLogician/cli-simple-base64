@@ -1,0 +1,4 @@
+built/**
+CMakeUserPresets.json
+CMakeCache.txt
+.vscode
