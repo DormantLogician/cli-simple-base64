@@ -1,0 +1,89 @@
+{
+    "version": 2,
+    "cmakeMinimumRequired":
+    {
+        "major": 3,
+        "minor": 20,
+        "patch": 0
+    },
+    "configurePresets":
+    [
+        {
+            "name": "release",
+            "displayName": "Release",
+            "description": "Clang with Ninja generator set to release mode.",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/built",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "debug",
+            "inherits": "release",
+            "displayName": "Debug",
+            "description": "Clang with Ninja generator set to debug mode.",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "profile",
+            "inherits": "release",
+            "displayName": "Profile",
+            "description": "Clang with Ninja generator set to profiling mode.",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "Profile",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        },
+        {
+            "name": "test",
+            "inherits": "release",
+            "displayName": "Test",
+            "description": "Clang with Ninja generator set to Testing mode.",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "Test",
+                "CMAKE_CXX_COMPILER": "clang++"
+            }
+        }
+    ],
+    "buildPresets":
+    [
+        {
+            "name": "release",
+            "configurePreset": "release",
+            "jobs": 4
+        },
+        {
+            "name": "debug",
+            "configurePreset": "debug",
+            "jobs": 4
+        },
+        {
+            "name": "profile",
+            "configurePreset": "profile",
+            "jobs": 4
+        },
+        {
+            "name": "test",
+            "configurePreset": "test",
+            "jobs": 4
+        }
+    ],
+    "testPresets":
+    [
+        {
+            "name": "default",
+            "configurePreset": "test",
+            "output": {"outputOnFailure": true},
+            "execution": {"noTestsAction": "error", "stopOnFailure": true, "jobs": 4}
+        }
+    ]
+}
