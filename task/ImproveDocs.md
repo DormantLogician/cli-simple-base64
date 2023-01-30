@@ -1,7 +1,7 @@
-# Description
+### Description
 Alot of documentation is not available - please document the code, tests, and CMake scripts so we can understand the project better in the future.
 
-# Docs for units in library
+### Docs for units in library
 to_alphabet_char:
     Returns character in base 64 alphabet that corrosponds to 6-bit input character.
 
@@ -33,7 +33,7 @@ decode_b64:
     Applies base 64 decoder function to output of selected reader function,
     writing decoded text to a specified location using selected writer function.
 
-# Docs for valid base 64 word critera
+### Docs for valid base 64 word critera
 - Must be 0 or 4 characters long.
 - Must contain only letters from the base 64 alphabet, or padd character.
 - Characters other than padd character must not exist in positions after first padd is found.
