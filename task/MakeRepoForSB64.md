@@ -1,0 +1,2 @@
+### Description
+Currently, this Git repo contains both a command line application (csb64 and related libs) and a library (sb64). For the future, it might be more suitable if these two projects were in separate repos, and csb64 uses sb64 as a Git submodule, or gets it from a package manager instead.
