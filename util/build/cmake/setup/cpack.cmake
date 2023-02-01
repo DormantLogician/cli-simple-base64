@@ -1,0 +1,2 @@
+set(CPACK_PACKAGE_CONTACT "Stephen Aaron Hannon")
+set(CPACK_DEBIAN_PACKAGE_SECTION utils)
