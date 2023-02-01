@@ -1,8 +1,5 @@
 include(CTest) # Enable testing.
 
-# Enable binary and source packaging targets (for certain generators).
-include(CPack)
-
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
