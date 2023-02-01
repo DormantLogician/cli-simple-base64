@@ -1,0 +1,2 @@
+### Description
+The object file size of 'string_to_integer' is very large - this is probably due to some kind of bloated include file in the unit. Please try to reduce size of the csb64_logic library using compiler optmization flags first - if that does not work, refactor the offending unit to not use the bloated include.
