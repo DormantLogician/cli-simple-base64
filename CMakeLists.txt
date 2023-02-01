@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(CLI_SimpleBase64 LANGUAGES CXX)
+project(CLI_SimpleBase64 
+    LANGUAGES CXX
+    DESCRIPTION "Command line interface for sb64 base 64 encoder/decoder."
+)
 
 set(SETUP_DIR util/build/cmake/setup) # Directory used by this CMake configuartion for includes.
 
