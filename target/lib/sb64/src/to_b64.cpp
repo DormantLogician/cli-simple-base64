@@ -2,7 +2,7 @@
 #include <functional>
 
 #include "sb64/to_b64.h"
-#include "sb64/detail/Letter.h"
+#include "sb64/Letter.h"
 #include "sb64/detail/to_alphabet_char.h"
 #include "sb64/constant/common.h"
 #include "sb64/detail/utility/write_stream.h"
@@ -13,9 +13,9 @@ namespace sb64
                 const std::function<bool(const std::vector<unsigned char>& output_word)>& writer)
     {
         const unsigned char zero_padd_value{'\0'};
-        const std::function word_encoder{[&writer](const std::vector<detail::Letter>& word) -> bool
+        const std::function word_encoder{[&writer](const std::vector<Letter>& word) -> bool
         {
-            std::vector<detail::Letter> with_padding{word};
+            std::vector<Letter> with_padding{word};
             long long padding_amount{0};
             while (with_padding.size() < constant::encoder_word_size)
             {
@@ -23,8 +23,8 @@ namespace sb64
                 ++padding_amount;
             };
 
-            const std::vector<detail::Letter> in_six_bits{detail::Letter::by_six_bits(with_padding)};
-            const std::vector<unsigned char> in_chars{detail::Letter::as_uchars(in_six_bits)};
+            const std::vector<Letter> in_six_bits{Letter::by_six_bits(with_padding)};
+            const std::vector<unsigned char> in_chars{Letter::as_uchars(in_six_bits)};
 
             std::vector<unsigned char> encoded{};
             for (auto character{in_chars.cbegin()}; character < in_chars.cend(); ++character)

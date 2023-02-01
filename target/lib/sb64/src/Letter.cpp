@@ -4,11 +4,11 @@
 #include <functional>
 #include <stdexcept>
 
-#include "sb64/detail/Letter.h"
+#include "sb64/Letter.h"
 #include "sb64/detail/utility/iterable_reader.h"
 #include "sb64/detail/utility/write_stream.h"
 
-namespace sb64::detail
+namespace sb64
 {
     std::vector<bool> Letter::truncate_bits(const std::vector<bool>& input)
     {
@@ -40,8 +40,8 @@ namespace sb64::detail
             return true;
         }};
 
-        const std::function bit_reader{utility::iterable_reader<bool>(in_bits.cbegin(), in_bits.cend())};
-        utility::write_stream(word_size, bit_reader, add_letter);
+        const std::function bit_reader{detail::utility::iterable_reader<bool>(in_bits.cbegin(), in_bits.cend())};
+        detail::utility::write_stream(word_size, bit_reader, add_letter);
 
         return in_letters;
     };

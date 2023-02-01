@@ -4,7 +4,6 @@
 
 #include "sb64/is_valid_b64.h"
 #include "sb64/constant/common.h"
-#include "sb64/detail/Letter.h"
 #include "sb64/detail/to_original_char.h"
 #include "sb64/detail/utility/write_stream.h"
 

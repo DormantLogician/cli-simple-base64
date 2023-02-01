@@ -1,6 +1,6 @@
 #include <boost/test/unit_test.hpp>
 
-#include "sb64/detail/Letter.h"
+#include "sb64/Letter.h"
 
 
 BOOST_AUTO_TEST_SUITE(Letter_as_uchar);
@@ -8,8 +8,8 @@ BOOST_AUTO_TEST_SUITE(Letter_as_uchar);
 BOOST_AUTO_TEST_CASE(Correctly_converts_letters_to_unsigned_characters)
 {
     const std::vector<unsigned char> output{
-        sb64::detail::Letter::as_uchars(
-            std::vector<sb64::detail::Letter>{'A', 'B', 'C', 'D', 'E'}
+        sb64::Letter::as_uchars(
+            std::vector<sb64::Letter>{'A', 'B', 'C', 'D', 'E'}
         )
     };
 
@@ -26,8 +26,8 @@ BOOST_AUTO_TEST_CASE(Correctly_converts_letters_to_unsigned_characters)
 BOOST_AUTO_TEST_CASE(Yields_correct_output_with_empty_input_list)
 {
     const std::vector<unsigned char> output{
-        sb64::detail::Letter::as_uchars(
-            std::vector<sb64::detail::Letter>{}
+        sb64::Letter::as_uchars(
+            std::vector<sb64::Letter>{}
         )
     };
 
@@ -44,8 +44,8 @@ BOOST_AUTO_TEST_CASE(Yields_correct_output_with_empty_input_list)
 BOOST_AUTO_TEST_CASE(Yields_correct_output_when_input_list_has_single_item)
 {
     const std::vector<unsigned char> output{
-        sb64::detail::Letter::as_uchars(
-            std::vector<sb64::detail::Letter>{'A'}
+        sb64::Letter::as_uchars(
+            std::vector<sb64::Letter>{'A'}
         )
     };
 
@@ -62,8 +62,8 @@ BOOST_AUTO_TEST_CASE(Yields_correct_output_when_input_list_has_single_item)
 BOOST_AUTO_TEST_CASE(Yields_correct_output_when_input_list_has_empty_letter)
 {
     const std::vector<unsigned char> output{
-        sb64::detail::Letter::as_uchars(
-            std::vector<sb64::detail::Letter>{sb64::detail::Letter{std::vector<bool>{}}}
+        sb64::Letter::as_uchars(
+            std::vector<sb64::Letter>{sb64::Letter{std::vector<bool>{}}}
         )
     };
 
