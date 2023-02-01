@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(SimpleBase64 LANGUAGES CXX)
+project(CLI_SimpleBase64 LANGUAGES CXX)
 
 set(SETUP_DIR util/build/cmake/setup) # Directory used by this CMake configuartion for includes.
 
