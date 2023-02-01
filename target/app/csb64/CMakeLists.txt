@@ -4,6 +4,8 @@ add_executable(${BINARY_NAME}
     main.cpp
 )
 
+install(TARGETS ${BINARY_NAME} RUNTIME DESTINATION bin)
+
 target_link_libraries(${BINARY_NAME} PRIVATE csb64_logic)
 
 setupFlags(${BINARY_NAME})

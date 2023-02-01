@@ -22,3 +22,6 @@ add_subdirectory(${TARGET_DIR_NAME}/lib/csb64_logic)
 addTestDir(${TARGET_DIR_NAME}/lib/csb64_logic/test)
 
 add_subdirectory(${TARGET_DIR_NAME}/app/csb64)
+
+# Enable binary and source packaging targets (for certain generators).
+include(CPack)
