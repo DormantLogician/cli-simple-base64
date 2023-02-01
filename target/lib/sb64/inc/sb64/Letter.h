@@ -3,7 +3,7 @@
 
 #include <vector>
 
-namespace sb64::detail
+namespace sb64
 {
     class Letter final
     {

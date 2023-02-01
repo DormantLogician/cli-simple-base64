@@ -1,10 +1,8 @@
 #ifndef SB64_F_IS_VALID_B64_H
 #define SB64_F_IS_VALID_B64_H
 
-#include <vector>
 #include <functional>
 #include <optional>
-#include "sb64/detail/Letter.h"
 
 namespace sb64
 {

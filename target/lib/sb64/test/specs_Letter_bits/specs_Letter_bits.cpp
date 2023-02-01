@@ -1,13 +1,13 @@
 #include <boost/test/unit_test.hpp>
 
-#include "sb64/detail/Letter.h"
+#include "sb64/Letter.h"
 
 BOOST_AUTO_TEST_SUITE(Letter_bits);
 
 
 BOOST_AUTO_TEST_CASE(Outputs_correct_view_of_bits_within_letter)
 {
-    const sb64::detail::Letter output{
+    const sb64::Letter output{
         std::vector<bool>{true, false, false, false, false, false, false, true}
     };
 
