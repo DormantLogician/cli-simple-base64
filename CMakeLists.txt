@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(CLI_SB64
+project(cli-sb64
     LANGUAGES CXX
     DESCRIPTION "Command line interface for sb64 base 64 encoder/decoder."
     VERSION 0.0.1
