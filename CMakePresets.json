@@ -87,7 +87,7 @@
         },
         {
             "name": "release",
-            "inherits": "default",
+            "inherits": "test",
             "configurePreset": "release"
         }
     ]
