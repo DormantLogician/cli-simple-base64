@@ -80,7 +80,7 @@
     "testPresets":
     [
         {
-            "name": "default",
+            "name": "test",
             "configurePreset": "test",
             "output": {"outputOnFailure": true},
             "execution": {"noTestsAction": "error", "stopOnFailure": true, "jobs": 4}
