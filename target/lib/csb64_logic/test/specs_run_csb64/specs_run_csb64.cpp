@@ -79,6 +79,27 @@ BOOST_AUTO_TEST_CASE(Outputs_base64_encoded_data_with_newline_when_requested)
     );
 };
 
+BOOST_AUTO_TEST_CASE(Outputs_base64_encoded_data_with_linebreaks_when_requested)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-w", "3"},
+            {'H', 'e', 'l', 'l', 'o'}
+        )
+    };
+
+    const std::vector<unsigned char> expected{'S', 'G', 'V', '\n', 's', 'b', 'G', '\n', '8', '=', '\n'};
+
+    BOOST_REQUIRE(output.has_value());
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+        output->cbegin(),
+        output->cend(),
+        expected.cbegin(),
+        expected.cend()
+    );
+};
+
 BOOST_AUTO_TEST_CASE(Outputs_decoded_base64_data_when_requested)
 {
     const std::optional<std::vector<unsigned char>> output{
