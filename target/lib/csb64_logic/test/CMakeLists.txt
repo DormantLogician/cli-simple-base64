@@ -10,7 +10,6 @@ add_subdirectory(specs_format_flag)
 add_subdirectory(specs_help_flag)
 add_subdirectory(specs_help_info_message)
 add_subdirectory(specs_run_csb64)
-add_subdirectory(specs_string_to_integer)
 
 target_link_libraries(${MODULE_NAME} PRIVATE ${BINARY_NAME}
     ${BINARY_NAME}_specs_decode_flag
@@ -20,5 +19,4 @@ target_link_libraries(${MODULE_NAME} PRIVATE ${BINARY_NAME}
     ${BINARY_NAME}_specs_help_flag
     ${BINARY_NAME}_specs_help_info_message
     ${BINARY_NAME}_specs_run_csb64
-    ${BINARY_NAME}_specs_string_to_integer
 )
