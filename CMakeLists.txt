@@ -12,7 +12,7 @@ include(${SETUP_DIR}/setup.cmake) # Perform general configuration related to pro
 include(${SETUP_DIR}/common.cmake) # Define functions and variables that are used later.
 include(${SETUP_DIR}/deps.cmake)
 include(${SETUP_DIR}/linting.cmake) # Deps not included in linting because they are retrieved above.
-include(${SETUP_DIR}/cpack.cmake) # Configure CPack so we can package our binaries and sources.
+include(${SETUP_DIR}/packing.cmake) # Configure CPack so we can package our binaries and sources.
 
 # Add project's targets to build.
 set(TARGET_DIR_NAME target)
