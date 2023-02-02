@@ -84,6 +84,11 @@
             "configurePreset": "test",
             "output": {"outputOnFailure": true},
             "execution": {"noTestsAction": "error", "stopOnFailure": true, "jobs": 4}
+        },
+        {
+            "name": "release",
+            "inherits": "default",
+            "configurePreset": "release"
         }
     ]
 }
