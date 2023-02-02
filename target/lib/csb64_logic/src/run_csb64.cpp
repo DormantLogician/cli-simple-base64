@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 #include <optional>
 #include <functional>
 #include <stdexcept>
@@ -13,7 +14,6 @@
 #include "csb64_logic/constant/format_flag.h"
 #include "csb64_logic/constant/help_info_message.h"
 #include "csb64_logic/constant/help_flag.h"
-#include "csb64_logic/utility/string_to_integer.h"
 
 #include "csb64_cli_parser/InvalidCmdArg.h"
 #include "csb64_cli_parser/id_classifier.h"
@@ -134,16 +134,25 @@ namespace csb64_logic
 
             if (format_flag_set.has_value())
             {
-                const std::optional<long long> as_integer{
-                    csb64_logic::utility::string_to_integer(*format_flag_set)
-                };
+                try
+                {
+                    long long as_integer{std::stoll(*format_flag_set)};
 
-                if (!as_integer.has_value() || (*as_integer < 0))
+                    if (as_integer < 0)
+                    {
+                        throw csb64_cli_parser::InvalidCmdArg{};
+                    };
+
+                    line_limit = as_integer;
+                }
+                catch (const std::out_of_range& err)
                 {
                     throw csb64_cli_parser::InvalidCmdArg{};
-                };
-
-                line_limit = *as_integer;
+                }
+                catch (const std::invalid_argument& err)
+                {
+                    throw csb64_cli_parser::InvalidCmdArg{};
+                }
             };
 
             long long pos_line{0};

@@ -7,7 +7,6 @@ add_library(${BINARY_NAME}
     src/constant/format_flag.cpp
     src/constant/help_flag.cpp
     src/constant/help_info_message.cpp
-    src/utility/string_to_integer.cpp
     src/run_csb64.cpp
 )
 
