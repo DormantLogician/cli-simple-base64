@@ -2,6 +2,9 @@ set(SUITE_NAME ${BINARY_NAME}_specs_find_all)
 
 add_library(${SUITE_NAME} OBJECT
     specs_find_all.cpp
+    inc/specs_find_all/distance_from.h
+    inc/specs_find_all/indexes_of.h
+    inc/specs_find_all/values_of.h
 )
 
 target_sources(${SUITE_NAME} PRIVATE
