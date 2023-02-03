@@ -10,6 +10,10 @@ add_library(${BINARY_NAME}
 
     inc/${BINARY_NAME}/detail/to_alphabet_char.h
     inc/${BINARY_NAME}/detail/to_original_char.h
+    inc/${BINARY_NAME}/detail/constant/alphabet.h
+    inc/${BINARY_NAME}/detail/utility/iterable_reader.h
+    inc/${BINARY_NAME}/detail/utility/write_stream.h
+    inc/${BINARY_NAME}/constant/common.h
     inc/${BINARY_NAME}/decode_b64.h
     inc/${BINARY_NAME}/is_valid_b64.h
     inc/${BINARY_NAME}/Letter.h
