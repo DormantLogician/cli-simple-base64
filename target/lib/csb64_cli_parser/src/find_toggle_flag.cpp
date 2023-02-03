@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <optional>
 #include <functional>
 
 #include "csb64_cli_parser/detail/find_all.h"
