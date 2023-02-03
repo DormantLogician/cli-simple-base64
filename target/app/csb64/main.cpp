@@ -12,11 +12,17 @@
 
 int main(int argc, char **argv)
 {
+    /* 
+     * If we are on Windows, we need to set standard input/output modes to 
+     * binary so program doesn't stop at the SUB character (not applicable to
+     * Linux). 
+     */
     #ifdef _WIN32
     _setmode(_fileno(stdin), _O_BINARY);
     _setmode(_fileno(stdout), _O_BINARY);
     #endif
 
+    // Working with vector of string is easier (and safer).
     std::vector<std::string> user_args{};
     for (long long index{0}; index < argc; ++index)
     {
