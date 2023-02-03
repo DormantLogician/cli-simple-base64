@@ -3,6 +3,8 @@ include(CTest) # Enable testing.
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+set(CMAKE_CODEBLOCKS_EXCLUDE_EXTERNAL_FILES ON) # Filter out external files in CodeBlocks IDE.
+
 option(BUILD_SHARED_LIBS "Build shared libraries instead of linking statically" OFF)
 
 set(CMAKE_BUILD_PARALLEL_LEVEL 4)
