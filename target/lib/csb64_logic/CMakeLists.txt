@@ -8,6 +8,14 @@ add_library(${BINARY_NAME}
     src/constant/help_flag.cpp
     src/constant/help_info_message.cpp
     src/run_csb64.cpp
+
+    inc/${BINARY_NAME}/constant/decode_flag.h
+    inc/${BINARY_NAME}/constant/disable_newline_flag.h
+    inc/${BINARY_NAME}/constant/err_code.h
+    inc/${BINARY_NAME}/constant/format_flag.h
+    inc/${BINARY_NAME}/constant/help_flag.h
+    inc/${BINARY_NAME}/constant/help_info_message.h
+    inc/${BINARY_NAME}/run_csb64.h
 )
 
 target_link_libraries(${BINARY_NAME} PRIVATE sb64 csb64_cli_parser)

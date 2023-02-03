@@ -2,6 +2,7 @@ set(SUITE_NAME ${BINARY_NAME}_specs_write_stream)
 
 add_library(${SUITE_NAME} OBJECT
     specs_write_stream.cpp
+    inc/specs_write_stream/TestFixture.h
 )
 
 target_sources(${SUITE_NAME} PRIVATE
