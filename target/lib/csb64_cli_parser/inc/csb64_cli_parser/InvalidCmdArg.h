@@ -5,6 +5,10 @@
 
 namespace csb64_cli_parser
 {
+    /*
+     * Primary error class for command line arguments used by command line
+     * parser.
+     */
     class InvalidCmdArg final : public std::exception
     {
         public:

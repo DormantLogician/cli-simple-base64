@@ -6,6 +6,12 @@
 
 namespace csb64_cli_parser
 {
+    /*
+     * Generates a command line flag classifier that returns true when given the
+     * specified identifier as an argument - false otherwise.
+     *
+     * @param id Identifier to use for classifier.
+     */
     std::function<bool(const std::string& id)> id_classifier(const std::string& id);
 };
 
