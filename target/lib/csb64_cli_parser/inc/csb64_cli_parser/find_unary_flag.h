@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <optional>
 #include <functional>
 
 namespace csb64_cli_parser
