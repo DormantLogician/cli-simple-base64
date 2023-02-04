@@ -16,7 +16,7 @@ namespace sb64
      * location.
      */
       void to_b64(const std::function<std::optional<unsigned char>()>& reader,
-                  const std::function<bool(const std::vector<unsigned char>& output_word)>& writer);
+                  const std::function<void(const std::vector<unsigned char>& output_word)>& writer);
 };
 
 #endif

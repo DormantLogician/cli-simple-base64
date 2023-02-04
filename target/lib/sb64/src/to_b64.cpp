@@ -10,7 +10,7 @@
 namespace sb64
 {
     void to_b64(const std::function<std::optional<unsigned char>()>& reader,
-                const std::function<bool(const std::vector<unsigned char>& output_word)>& writer)
+                const std::function<void(const std::vector<unsigned char>& output_word)>& writer)
     {
         const unsigned char zero_padd_value{'\0'};
         const std::function word_encoder{[&writer](const std::vector<Letter>& word) -> bool
