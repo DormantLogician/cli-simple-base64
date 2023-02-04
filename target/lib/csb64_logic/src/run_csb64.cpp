@@ -52,14 +52,12 @@ namespace csb64_logic
         }};
 
         // Characters-per-line writer is described later.
-        const auto normal_writer{[&write_character](const std::vector<unsigned char>& input) -> bool
+        const auto normal_writer{[&write_character](const std::vector<unsigned char>& input) -> void
         {
             for (auto character{input.cbegin()}; character < input.cend(); ++character)
             {
                 write_character(*character);
             };
-
-            return true;
         }};
 
         // Need separate reader for encoder due to decode reader ignoring certain characters.
@@ -160,7 +158,7 @@ namespace csb64_logic
 
             long long pos_line{0}; // Keeping track of position in cpl writer to place linebreaks.
 
-            const auto cpl_writer{[&pos_line, line_limit, &write_character](const std::vector<unsigned char>& input) -> bool
+            const auto cpl_writer{[&pos_line, line_limit, &write_character](const std::vector<unsigned char>& input)
             {
                 for (auto character{input.cbegin()}; character < input.cend(); ++character)
                 {
@@ -173,8 +171,6 @@ namespace csb64_logic
                     write_character(*character);
                     ++pos_line;
                 };
-
-                return true;
             }};
 
             if (decode_flag_set)
