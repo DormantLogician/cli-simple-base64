@@ -2,7 +2,7 @@
 # Use this function on any new app and library targets internal to project.
 function(setupFlags TARGET)
     set(CLANG_TESTADDR_FLAGS $<$<CONFIG:TestAddr>:-fsanitize=undefined,address,leak -fno-omit-frame-pointer>)
-    set(CLANG_TESTMEM_FLAGS $<$<CONFIG:TestMem>:-fsanitize=undefined,memory,leak -fno-omit-frame-pointer>)
+    set(CLANG_TESTMEM_FLAGS $<$<CONFIG:TestMem>:-fsanitize=undefined,memory -fno-omit-frame-pointer>)
 
     set(MSVC_TESTADDR_FLAGS $<$<CONFIG:TestAddr>:/fsanitize=address /Oy->)
 
