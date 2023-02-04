@@ -1,3 +1,5 @@
+include(GNUInstallDirs) # Define common file installation paths.
+
 set(CPACK_PACKAGE_CONTACT "Stephen Aaron Hannon <hannonstephen19@gmail.com>")
 set(CPACK_STRIP_FILES YES) # Strip debug symbols from binary files.
 set(CPACK_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS # Make sure directory permissions are set properly.
