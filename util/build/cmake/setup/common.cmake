@@ -1,13 +1,13 @@
 # Add some default compiler and linker flags to 'TARGET' based on chosen compiler and CMake configuration.
 # Use this function on any new app and library targets internal to project.
 function(setupFlags TARGET)
-    set(CLANG_TESTADDR_FLAGS $<$<CONFIG:TestAddr>:-fsanitize=undefined,address,leak -fno-omit-frame-pointer>)
-    set(CLANG_TESTMEM_FLAGS $<$<CONFIG:TestMem>:-fsanitize=undefined,memory -fno-omit-frame-pointer>)
+    set(CLANG_TESTADDR_FLAGS $<$<CONFIG:TestAddr>:-g -fsanitize=undefined,address,leak -fno-omit-frame-pointer>)
+    set(CLANG_TESTMEM_FLAGS $<$<CONFIG:TestMem>:-g -fsanitize=undefined,memory -fno-omit-frame-pointer>)
 
-    set(MSVC_TESTADDR_FLAGS $<$<CONFIG:TestAddr>:/fsanitize=address /Oy->)
+    set(MSVC_TESTADDR_FLAGS $<$<CONFIG:TestAddr>:/DEBUG /fsanitize=address /Oy->)
 
     # Memory sanitizer not available on MSVC - using address sanitizer instead.
-    set(MSVC_TESTMEM_FLAGS $<$<CONFIG:TestMem>:-fsanitize=undefined,address,leak -fno-omit-frame-pointer>)
+    set(MSVC_TESTMEM_FLAGS $<$<CONFIG:TestMem>:/DEBUG /fsanitize=address /Oy->)
 
     set(CLANG_PROFILE_FLAGS $<$<CONFIG:Profile>:-pg>)
     set(MSVC_PROFILE_FLAGS $<$<CONFIG:Profile>:/GENPROFILE>)
