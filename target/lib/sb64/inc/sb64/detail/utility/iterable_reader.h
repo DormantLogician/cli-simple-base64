@@ -5,6 +5,14 @@
 
 namespace sb64::detail::utility
 {
+    /*
+     * Returns function that yields values from beginning to end of the
+     * applicable iterable one by one, after which it begins returning an
+     * empty value.
+     * 
+     * @param iter Start iterator.
+     * @param end Stop iterator.
+     */
     template<typename Value, typename Iterator, typename EndIterator>
     auto iterable_reader(Iterator iter,
                          EndIterator end)
