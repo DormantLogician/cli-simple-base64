@@ -33,6 +33,7 @@ namespace csb64_cli_parser
             };
         };
 
+        // We must allow the first argument to the command line (name of program).
         return (detail::head_arg_count(user_args, cmd_classifier) < 2);
     };
 };

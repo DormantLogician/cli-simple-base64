@@ -15,6 +15,7 @@ namespace sb64
         const unsigned char zero_padd_value{'\0'};
         const std::function word_encoder{[&writer](const std::vector<Letter>& word) -> bool
         {
+            // Add zeros to word so we can pad the word later.
             std::vector<Letter> with_padding{word};
             long long padding_amount{0};
             while (with_padding.size() < constant::encoder_word_size)
@@ -33,6 +34,7 @@ namespace sb64
                 encoded.push_back(in_alphabet);
             };
 
+            // Remove zero pads and replace with pad character.
             for (long long index{0}; index < padding_amount; ++index)
             {
                 encoded.pop_back();

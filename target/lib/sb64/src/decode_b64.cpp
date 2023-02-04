@@ -22,6 +22,7 @@ namespace sb64
                 throw std::invalid_argument{"Arguments to decoder must be valid base 64 encoded data."};
             };
 
+            // Read word six bits at a time first.
             std::vector<Letter> by_six_bits{};
             for (auto character{word.cbegin()}; character < word.cend(); ++character)
             {
@@ -41,6 +42,7 @@ namespace sb64
 
             std::vector<Letter> in_eight_bits{Letter::by_eight_bits(by_six_bits)};
 
+            // Remove trailing bits after operation.
             const bool has_trailing_bits{!in_eight_bits.empty() && (in_eight_bits.back().bits().size() < 8)};
             if (has_trailing_bits)
             {
