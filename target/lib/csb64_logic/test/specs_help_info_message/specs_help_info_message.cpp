@@ -8,7 +8,7 @@ BOOST_AUTO_TEST_CASE(Outputs_correct_message)
 {
     BOOST_CHECK_EQUAL(csb64_logic::constant::help_info_message(), 
                std::string{"Usage: csb64 [OPTION]...\n"} +
-                           "Encode or decode Base64 - uses standard input and output.\n" +
+                           "Encode or decode base 64 - uses standard input and output.\n" +
                            "\n" +
                            "Available options (default mode is encode):\n" +
                            "  -d         Set mode to decode - incompatible with help mode.\n" +
