@@ -28,5 +28,7 @@ addTestDir(${TARGET_DIR_NAME}/lib/csb64_logic/test)
 
 add_subdirectory(${TARGET_DIR_NAME}/app/csb64)
 
+install(FILES LICENSE.txt DESTINATION ${CMAKE_INSTALL_DOCDIR} RENAME copyright)
+
 # Enable binary and source packaging targets (for certain generators).
 include(CPack)
