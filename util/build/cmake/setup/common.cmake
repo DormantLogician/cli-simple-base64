@@ -18,15 +18,13 @@ function(setupFlags TARGET)
             -Wuninitialized
             -Winit-self
             ${CLANG_DEBUG_FLAGS}
-            ${CLANG_TESTMEM_FLAGS}
-            ${CLANG_TESTADDR_FLAGS}
+            ${CLANG_TEST_FLAGS}
             ${CLANG_PROFILE_FLAGS}
         )
         
         target_link_options(${TARGET} PRIVATE
             ${CLANG_DEBUG_FLAGS}
-            ${CLANG_TESTMEM_FLAGS}
-            ${CLANG_TESTADDR_FLAGS}
+            ${CLANG_TEST_FLAGS}
             ${CLANG_PROFILE_FLAGS}
         )
     endif()
@@ -35,15 +33,13 @@ function(setupFlags TARGET)
             /guard:cf 
             /GS
             ${MSVC_DEBUG_FLAGS}
-            ${MSVC_TESTMEM_FLAGS}
-            ${MSVC_TESTADDR_FLAGS}
+            ${MSVC_TEST_FLAGS}
             ${MSVC_PROFILE_FLAGS}
         )
         
         target_link_options(${TARGET} PRIVATE
             ${MSVC_DEBUG_FLAGS}
-            ${MSVC_TESTMEM_FLAGS}
-            ${MSVC_TESTADDR_FLAGS}
+            ${MSVC_TEST_FLAGS}
             ${MSVC_PROFILE_FLAGS}
         )
     endif()
