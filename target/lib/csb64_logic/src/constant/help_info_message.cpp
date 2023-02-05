@@ -5,7 +5,7 @@ namespace csb64_logic::constant
     std::string help_info_message()
     {
         return std::string{"Usage: csb64 [OPTION]...\n"} +
-                           "Encode or decode Base64 - uses standard input and output.\n" +
+                           "Encode or decode base 64 - uses standard input and output.\n" +
                            "\n" +
                            "Available options (default mode is encode):\n" +
                            "  -d         Set mode to decode - incompatible with help mode.\n" +
