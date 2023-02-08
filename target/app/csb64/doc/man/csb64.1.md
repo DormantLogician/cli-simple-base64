@@ -1,4 +1,4 @@
-% CSB64(1) v1
+% CSB64(1) 1.0
 % Stephen Aaron Hannon
 % February 2023
 
