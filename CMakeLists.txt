@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 project(cli-sb64
     LANGUAGES CXX
     DESCRIPTION "Command line interface for sb64 base 64 encoder/decoder."
-    VERSION 1
+    VERSION 1.0
 )
 
 set(SETUP_DIR util/build/cmake/setup) # Directory used by this CMake configuartion for includes.
@@ -16,9 +16,6 @@ include(${SETUP_DIR}/packing.cmake) # Configure CPack so we can package our bina
 
 # Add project's targets to build.
 set(TARGET_DIR_NAME target)
-
-add_subdirectory(${TARGET_DIR_NAME}/lib/sb64)
-addTestDir(${TARGET_DIR_NAME}/lib/sb64/test)
 
 add_subdirectory(${TARGET_DIR_NAME}/lib/csb64_cli_parser)
 addTestDir(${TARGET_DIR_NAME}/lib/csb64_cli_parser/test)

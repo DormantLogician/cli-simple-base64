@@ -11,57 +11,57 @@
         {
             "name": "release",
             "displayName": "Release",
-            "description": "Clang with Ninja generator set to release mode.",
+            "description": "GCC with Ninja generator set to release mode.",
             "generator": "Ninja",
             "binaryDir": "${sourceDir}/built",
             "cacheVariables":
             {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_CXX_COMPILER": "clang++"
+                "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
             "name": "debug",
             "inherits": "release",
             "displayName": "Debug",
-            "description": "Clang with Ninja generator set to debug mode.",
+            "description": "GCC with Ninja generator set to debug mode.",
             "cacheVariables":
             {
                 "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_CXX_COMPILER": "clang++"
+                "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
             "name": "profile",
             "inherits": "release",
             "displayName": "Profile",
-            "description": "Clang with Ninja generator set to profiling mode.",
+            "description": "GCC with Ninja generator set to profiling mode.",
             "cacheVariables":
             {
                 "CMAKE_BUILD_TYPE": "Profile",
-                "CMAKE_CXX_COMPILER": "clang++"
+                "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
             "name": "test",
             "inherits": "release",
             "displayName": "Test",
-            "description": "Clang with Ninja generator set to Test mode (Address sanitizer).",
+            "description": "GCC with Ninja generator set to Test mode (Address sanitizer).",
             "cacheVariables":
             {
                 "CMAKE_BUILD_TYPE": "Test",
-                "CMAKE_CXX_COMPILER": "clang++"
+                "CMAKE_CXX_COMPILER": "g++"
             }
         },
         {
             "name": "valgrind",
             "inherits": "release",
             "displayName": "Valgrind",
-            "description": "Clang with Ninja generator set to Valgrind mode (for Valgrind-enabled tests).",
+            "description": "GCC with Ninja generator set to Valgrind mode (for Valgrind-enabled tests).",
             "cacheVariables":
             {
                 "CMAKE_BUILD_TYPE": "valgrind",
-                "CMAKE_CXX_COMPILER": "clang++"
+                "CMAKE_CXX_COMPILER": "g++"
             }
         }
     ],

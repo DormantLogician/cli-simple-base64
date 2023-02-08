@@ -18,7 +18,7 @@ add_library(${BINARY_NAME}
     inc/${BINARY_NAME}/run_csb64.h
 )
 
-target_link_libraries(${BINARY_NAME} PRIVATE sb64 csb64_cli_parser)
+target_link_libraries(${BINARY_NAME} PRIVATE sb64::sb64 csb64_cli_parser)
 
 setupFlags(${BINARY_NAME})
 target_include_directories(${BINARY_NAME} PUBLIC inc)
