@@ -79,6 +79,27 @@ BOOST_AUTO_TEST_CASE(Outputs_base64_encoded_data_with_newline_when_requested)
     );
 };
 
+BOOST_AUTO_TEST_CASE(Can_output_without_characters_per_line)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-w", "0"},
+            {'H', 'e', 'l', 'l', 'o'}
+        )
+    };
+
+    const std::vector<unsigned char> expected{'S', 'G', 'V', 's', 'b', 'G', '8', '=', '\n'};
+
+    BOOST_REQUIRE(output.has_value());
+
+    BOOST_CHECK_EQUAL_COLLECTIONS(
+        output->cbegin(),
+        output->cend(),
+        expected.cbegin(),
+        expected.cend()
+    );
+};
+
 BOOST_AUTO_TEST_CASE(Outputs_base64_encoded_data_with_linebreaks_when_requested)
 {
     const std::optional<std::vector<unsigned char>> output{
@@ -206,6 +227,66 @@ BOOST_AUTO_TEST_CASE(Error_on_unrecognized_flags)
     };
 
     BOOST_TEST(!output.has_value());
+};
+
+BOOST_AUTO_TEST_CASE(Error_on_help_flag_usage_with_other_flags)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-h" "-n"},
+            {}
+        )
+    };
+
+    BOOST_TEST(!output.has_value());
+};
+
+BOOST_AUTO_TEST_CASE(Error_on_negative_characters_per_line)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-w", "-1"},
+            {}
+        )
+    };
+
+    BOOST_TEST(!output.has_value());
+};
+
+BOOST_AUTO_TEST_CASE(Error_on_invalid_characters_per_line_integer)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-w", "a1"},
+            {}
+        )
+    };
+
+    BOOST_TEST(!output.has_value());
+};
+
+BOOST_AUTO_TEST_CASE(Error_on_too_large_characters_per_line)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-w", "99999999999999999999999"},
+            {}
+        )
+    };
+
+    BOOST_TEST(!output.has_value());
+};
+
+BOOST_AUTO_TEST_CASE(Prints_help_info)
+{
+    const std::optional<std::vector<unsigned char>> output{
+        specs_run_csb64::test_run_csb64(
+            {"-h"},
+            {}
+        )
+    };
+
+    BOOST_TEST(output.has_value());
 };
 
 BOOST_AUTO_TEST_CASE(Error_on_decode_flag_argument)
