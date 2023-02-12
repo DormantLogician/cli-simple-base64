@@ -8,8 +8,7 @@
 namespace specs_run_csb64
 {
     std::optional<std::vector<unsigned char>> test_run_csb64(const std::vector<std::string>& user_args,
-                                                             const std::vector<unsigned char>& stream_data,
-                                                             const std::function<void()> print_help = [](){});
+                                                             const std::vector<unsigned char>& stream_data);
 };
 
 #endif
