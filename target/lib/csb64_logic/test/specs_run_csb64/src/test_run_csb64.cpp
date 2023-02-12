@@ -11,8 +11,7 @@
 namespace specs_run_csb64
 {
     std::optional<std::vector<unsigned char>> test_run_csb64(const std::vector<std::string>& user_args,
-                                                             const std::vector<unsigned char>& stream_data,
-                                                             const std::function<void()> print_help_info)
+                                                             const std::vector<unsigned char>& stream_data)
     {
         std::vector<unsigned char> write_location{};
 
@@ -49,6 +48,11 @@ namespace specs_run_csb64
             return void();
         }};
 
+        const auto print_help{[]() -> void
+        {
+            return void();
+        }};
+
         const int output{
             csb64_logic::run_csb64(
                 user_args,
@@ -56,7 +60,7 @@ namespace specs_run_csb64
                 writer,
                 at_end,
                 print_error,
-                print_help_info
+                print_help
             )
         };
 
