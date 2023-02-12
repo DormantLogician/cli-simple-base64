@@ -18,7 +18,7 @@ namespace csb64_logic
      * false otherwise.
      * @param print_error Is called to print error messages to some arbirary
      * location.
-     * @param print_error Is called to print help info for program to some
+     * @param print_help_info Is called to print help info for program to some
      * arbirary location.
      */
     int run_csb64(const std::vector<std::string>& user_args,

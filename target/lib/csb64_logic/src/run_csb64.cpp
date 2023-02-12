@@ -139,11 +139,8 @@ namespace csb64_logic
                 {
                     long long as_integer{std::stoll(*format_flag_set)};
 
-                    if (as_integer < 0)
-                    {
-                        throw csb64_cli_parser::InvalidCmdArg{};
-                    };
-
+                    // 'as_integer' cannot be negative because dashes '-' are interpreted as commands.
+                    // Also, 'stoll' doesn't seem to be capable of producing negative numbers otherwise.
                     line_limit = as_integer;
                 }
                 catch (const std::out_of_range& err)
