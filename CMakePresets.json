@@ -1,75 +1,97 @@
 {
-    "version": 2,
-    "cmakeMinimumRequired":
-    {
-        "major": 3,
-        "minor": 20,
-        "patch": 0
-    },
+    "version": 3,
     "configurePresets":
     [
         {
-            "name": "multi",
-            "displayName": "Multi",
-            "description": "GCC with Ninja Multi-config generator.",
-            "generator": "Ninja Multi-Config",
-            "binaryDir": "${sourceDir}/built/multi",
-            "cacheVariables":
-            {
-                "CMAKE_CXX_COMPILER": "g++"
-            }
+            "name": "default",
+            "displayName": "Default",
+            "description": "The default preset.",
+            "binaryDir": "${sourceDir}/built",
+            "toolchainFile": "${sourceDir}/built/generators/conan_toolchain.cmake"
         },
         {
             "name": "release",
             "displayName": "Release",
-            "description": "GCC with Ninja generator set to release mode.",
-            "generator": "Ninja",
-            "binaryDir": "${sourceDir}/built/single",
+            "description": "Release mode preset.",
+            "binaryDir": "${sourceDir}/built/Release",
+            "toolchainFile": "${sourceDir}/built/Release/generators/conan_toolchain.cmake",
             "cacheVariables":
             {
-                "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
             "name": "debug",
-            "inherits": "release",
             "displayName": "Debug",
-            "description": "GCC with Ninja generator set to debug mode.",
+            "description": "Debug mode preset.",
+            "binaryDir": "${sourceDir}/built/Debug",
+            "toolchainFile": "${sourceDir}/built/Debug/generators/conan_toolchain.cmake",
             "cacheVariables":
             {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "relwithdebinfo",
+            "displayName": "RelWithDebInfo",
+            "description": "Release with debug info mode preset.",
+            "binaryDir": "${sourceDir}/built/RelWithDebInfo",
+            "toolchainFile": "${sourceDir}/built/RelWithDebInfo/generators/conan_toolchain.cmake",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "minsizerel",
+            "displayName": "MinSizeRel",
+            "description": "Minimum size release mode preset.",
+            "binaryDir": "${sourceDir}/built/MinSizeRel",
+            "toolchainFile": "${sourceDir}/built/MinSizeRel/generators/conan_toolchain.cmake",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "MinSizeRel"
+            }
+        },
+        {
+            "name": "test",
+            "displayName": "Test",
+            "description": "Testing (sanitizer) mode preset.",
+            "binaryDir": "${sourceDir}/built/Debug",
+            "toolchainFile": "${sourceDir}/built/Debug/generators/conan_toolchain.cmake",
+            "cacheVariables":
+            {
+                "CMAKE_BUILD_TYPE": "Test"
             }
         },
         {
             "name": "profile",
-            "inherits": "release",
             "displayName": "Profile",
-            "description": "GCC with Ninja generator set to profiling mode.",
+            "description": "Profiling mode preset.",
+            "binaryDir": "${sourceDir}/built/Debug",
+            "toolchainFile": "${sourceDir}/built/Debug/generators/conan_toolchain.cmake",
             "cacheVariables":
             {
-                "CMAKE_BUILD_TYPE": "Profile",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_BUILD_TYPE": "Profile"
             }
         },
         {
             "name": "coverage",
-            "inherits": "release",
             "displayName": "Coverage",
-            "description": "GCC with Ninja generator set to test code coverage mode.",
+            "description": "Test coverage mode preset.",
+            "binaryDir": "${sourceDir}/built/Debug",
+            "toolchainFile": "${sourceDir}/built/Debug/generators/conan_toolchain.cmake",
             "cacheVariables":
             {
-                "CMAKE_BUILD_TYPE": "Coverage",
-                "CMAKE_CXX_COMPILER": "g++"
+                "CMAKE_BUILD_TYPE": "Coverage"
             }
         }
     ],
     "buildPresets":
     [
         {
-            "name": "multi",
-            "configurePreset": "multi",
+            "name": "default",
+            "configurePreset": "default",
             "jobs": 4
         },
         {
@@ -80,6 +102,21 @@
         {
             "name": "debug",
             "configurePreset": "debug",
+            "jobs": 4
+        },
+        {
+            "name": "relwithdebinfo",
+            "configurePreset": "relwithdebinfo",
+            "jobs": 4
+        },
+        {
+            "name": "minsizerel",
+            "configurePreset": "minsizerel",
+            "jobs": 4
+        },
+        {
+            "name": "test",
+            "configurePreset": "test",
             "jobs": 4
         },
         {
@@ -96,24 +133,39 @@
     "testPresets":
     [
         {
-            "name": "multi",
-            "configurePreset": "multi",
+            "name": "default",
+            "configurePreset": "default",
             "output": {"outputOnFailure": true},
             "execution": {"noTestsAction": "error", "stopOnFailure": true, "jobs": 4}
         },
         {
             "name": "release",
-            "inherits": "multi",
+            "inherits": "default",
             "configurePreset": "release"
         },
         {
             "name": "debug",
-            "inherits": "multi",
+            "inherits": "default",
             "configurePreset": "debug"
         },
         {
+            "name": "relwithdebinfo",
+            "inherits": "default",
+            "configurePreset": "relwithdebinfo"
+        },
+        {
+            "name": "minsizerel",
+            "inherits": "default",
+            "configurePreset": "minsizerel"
+        },
+        {
+            "name": "test",
+            "inherits": "default",
+            "configurePreset": "test"
+        },
+        {
             "name": "coverage",
-            "inherits": "multi",
+            "inherits": "default",
             "configurePreset": "coverage"
         }
     ]

@@ -1,4 +1,5 @@
 Checks: '-*,
+         cppcoreguidelines-slicing,
          cppcoreguidelines-narrowing-conversions,
          cppcoreguidelines-init_variables,
          cppcoreguidelines-pro-type-member-init,
