@@ -11,7 +11,8 @@ class ConfigConan(ConanFile):
     description = """Command line interface for sb64 base 64 encoder/decoder."""
     upload_policy = "skip"
 
-    requires = "sb64/1.0", "boost/1.83.0"
+    # Must build DormantLogician's 'sb64' package from GitHub, install it locally using Conan, then add "sb64/1.0" (be sure to use latest version) below under 'requires'.
+    requires = "boost/1.83.0"
     generators = "CMakeDeps"
 
     settings = "os", "compiler", "build_type", "arch"
