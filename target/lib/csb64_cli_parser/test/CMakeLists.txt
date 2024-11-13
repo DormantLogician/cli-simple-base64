@@ -2,6 +2,7 @@ set(BINARY_NAME csb64_cli_parser)
 set(MODULE_NAME all_${BINARY_NAME}_specs)
 
 makeTest(${MODULE_NAME} ${MODULE_NAME}.cpp)
+setupFlags(${MODULE_NAME})
 
 add_subdirectory(specs_any_classifiers_match)
 add_subdirectory(specs_begins_with_dash)
@@ -26,3 +27,5 @@ target_link_libraries(${MODULE_NAME} PRIVATE ${BINARY_NAME}
     ${BINARY_NAME}_specs_satisfies
     ${BINARY_NAME}_specs_strings_from
 )
+
+

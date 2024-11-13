@@ -1,5 +1,6 @@
 include(GNUInstallDirs) # Define common file installation paths.
 
+set(CPACK_COMPONENTS_ALL app)
 set(CPACK_STRIP_FILES YES) # Strip debug symbols from binary files.
 set(CPACK_PACKAGE_CHECKSUM SHA256)
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE.txt)
@@ -17,5 +18,9 @@ set(CPACK_INSTALL_DEFAULT_DIRECTORY_PERMISSIONS # Make sure directory permission
 set(CPACK_SOURCE_GENERATOR ZIP)
 set(CPACK_SOURCE_IGNORE_FILES /built;/.git;/.vscode;/CMakeUserPresets.json)
 
+set(CPACK_DEB_COMPONENT_INSTALL ON)
 set(CPACK_DEBIAN_PACKAGE_SECTION utils)
+
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS YES) # Make better dependency list in deb file.
+
+set(CPACK_RPM_COMPONENT_INSTALL ON)

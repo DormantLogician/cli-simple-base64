@@ -2,6 +2,7 @@ set(BINARY_NAME csb64_logic)
 set(MODULE_NAME all_${BINARY_NAME}_specs)
 
 makeTest(${MODULE_NAME} ${MODULE_NAME}.cpp)
+setupFlags(${MODULE_NAME})
 
 add_subdirectory(specs_decode_flag)
 add_subdirectory(specs_disable_newline_flag)
@@ -20,3 +21,5 @@ target_link_libraries(${MODULE_NAME} PRIVATE ${BINARY_NAME}
     ${BINARY_NAME}_specs_help_info_message
     ${BINARY_NAME}_specs_run_csb64
 )
+
+
