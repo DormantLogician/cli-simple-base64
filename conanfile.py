@@ -12,7 +12,7 @@ class ConfigConan(ConanFile):
     upload_policy = "skip"
 
     # Must build DormantLogician's 'sb64' package from GitHub, install it locally using Conan, then add "sb64/1.0" (be sure to use latest version) to right of 'requires'.
-    requires = "boost/1.83.0"
+    requires = "boost/1.86.0"
     generators = "CMakeDeps"
 
     settings = "os", "compiler", "build_type", "arch"
