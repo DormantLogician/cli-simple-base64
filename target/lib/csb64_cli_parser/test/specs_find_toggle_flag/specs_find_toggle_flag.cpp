@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(Throws_when_flag_has_a_single_argument)
 
 BOOST_AUTO_TEST_CASE(Outputs_false_when_user_args_empty)
 {
-    bool output{
+    const bool output{
         csb64_cli_parser::find_toggle_flag(
             {},
             csb64_cli_parser::id_classifier("-f")
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(Outputs_false_when_user_args_empty)
 
 BOOST_AUTO_TEST_CASE(Outputs_false_when_flag_not_in_list)
 {
-    bool output{
+    const bool output{
         csb64_cli_parser::find_toggle_flag(
             {"-e", "-t", "-a"},
             csb64_cli_parser::id_classifier("-f")

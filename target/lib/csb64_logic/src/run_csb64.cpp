@@ -137,7 +137,7 @@ namespace csb64_logic
             {
                 try
                 {
-                    long long as_integer{std::stoll(*format_flag_set)};
+                    const long long as_integer{std::stoll(*format_flag_set)};
 
                     // 'as_integer' cannot be negative because dashes '-' are interpreted as commands.
                     // Also, 'stoll' doesn't seem to be capable of producing negative numbers otherwise.

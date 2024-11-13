@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE(Yields_value_of_flag_when_input_has_a_single_flag_only)
 
 BOOST_AUTO_TEST_CASE(Yields_empty_value_when_input_flag_not_in_arguments)
 {
-    std::optional<std::string> output{
+    const std::optional<std::string> output{
         csb64_cli_parser::find_unary_flag(
             {"-a", "e", "-b", "-f", "e", "-c", "-d", "e", "e"},
             csb64_cli_parser::id_classifier("-e")
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(Yields_empty_value_when_input_flag_not_in_arguments)
 
 BOOST_AUTO_TEST_CASE(Yields_empty_value_when_input_is_empty)
 {
-    std::optional<std::string> output{
+    const std::optional<std::string> output{
         csb64_cli_parser::find_unary_flag(
             {},
             csb64_cli_parser::id_classifier("-e")
