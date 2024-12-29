@@ -6,3 +6,12 @@ if (NOT CLANG_TIDY_EXE)
 else()
     set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_EXE} -p ${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json)
 endif()
+
+# For generating manpages.
+find_program(PANDOC_EXE NAMES "pandoc" DOC "Path to Pandoc document converter tool.")
+
+if (CMAKE_HOST_SYSTEM_NAME STREQUAL "Windows")
+    find_program(7ZIP_EXE NAMES "7z" DOC "Path to 7Zip archive manager.")
+else()
+    find_program(GZIP_EXE NAMES "gzip" DOC "Path to GZip archiving tool.")
+endif()

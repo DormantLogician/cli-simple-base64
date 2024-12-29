@@ -1,7 +1,7 @@
 import os
 
 from conan import ConanFile
-from conan.tools.cmake import CMakeToolchain, CMake
+from conan.tools.cmake import CMakeToolchain, CMake, CMakeDeps
 
 class ConfigConan(ConanFile):
     name = "csb64"
@@ -12,8 +12,7 @@ class ConfigConan(ConanFile):
     upload_policy = "skip"
 
     # Must build DormantLogician's 'sb64' package from GitHub, install it locally using Conan, then add "sb64/1.0" (be sure to use latest version) to right of 'requires'.
-    requires = "boost/1.86.0"
-    generators = "CMakeDeps"
+    requires = "boost/1.86.0", "sb64/1.0"
 
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
@@ -31,20 +30,59 @@ class ConfigConan(ConanFile):
 
     def generate(self):
         tc = CMakeToolchain(self)
-        tc.user_presets_path = False
+
+        if self.settings.get_safe("compiler") == "clang":
+            tc.variables["CMAKE_CXX_FLAGS"] = "-fno-strict-overflow -fno-strict-aliasing -fno-delete-null-pointer-checks -Wuninitialized -Winit-self -fhardened"
+            tc.variables["CMAKE_CXX_FLAGS_DEBUG"] = "-g -O0"
+            tc.variables["CMAKE_CXX_FLAGS_RELEASE"] = "-O2"
+            tc.variables["CMAKE_CXX_FLAGS_RELWITHDEBINFO"] = "-g -O2"
+            tc.variables["CMAKE_CXX_FLAGS_MINSIZEREL"] = "-Os"
+            tc.variables["CMAKE_CXX_FLAGS_TEST"] = "-fsanitize=undefined,address,leak -fno-omit-frame-pointer"
+            tc.variables["CMAKE_CXX_FLAGS_PROFILE"] = "-O0 -pg"
+            tc.variables["CMAKE_CXX_FLAGS_COVERAGE"] = "--coverage -O0"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_TEST"] = "-fsanitize=undefined,address,leak -fno-omit-frame-pointer"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_PROFILE"] = "-O0 -pg"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_COVERAGE"] = "--coverage -O0"
+
+        if self.settings.get_safe("compiler") == "gcc":
+            tc.variables["CMAKE_CXX_FLAGS"] = "-fno-strict-overflow -fno-strict-aliasing -fno-delete-null-pointer-checks -Wuninitialized -Winit-self -fhardened"
+            tc.variables["CMAKE_CXX_FLAGS_DEBUG"] = "-g -O0"
+            tc.variables["CMAKE_CXX_FLAGS_RELEASE"] = "-O2"
+            tc.variables["CMAKE_CXX_FLAGS_RELWITHDEBINFO"] = "-g -O2"
+            tc.variables["CMAKE_CXX_FLAGS_MINSIZEREL"] = "-Os"
+            tc.variables["CMAKE_CXX_FLAGS_TEST"] = "-fsanitize=undefined,address,leak -fno-omit-frame-pointer"
+            tc.variables["CMAKE_CXX_FLAGS_PROFILE"] = "-O0 -pg"
+            tc.variables["CMAKE_CXX_FLAGS_COVERAGE"] = "--coverage -O0"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_TEST"] = "-fsanitize=undefined,address,leak -fno-omit-frame-pointer"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_PROFILE"] = "-O0 -pg"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_COVERAGE"] = "--coverage -O0"
+
+        if self.settings.get_safe("compiler") == "msvc":
+            tc.variables["CMAKE_CXX_FLAGS"] = "/guard:cf /GS /EHsc"
+            tc.variables["CMAKE_CXX_FLAGS_DEBUG"] = "/DEBUG"
+            tc.variables["CMAKE_CXX_FLAGS_RELEASE"] = "/O2"
+            tc.variables["CMAKE_CXX_FLAGS_RELWITHDEBINFO"] = "/DEBUG /O2"
+            tc.variables["CMAKE_CXX_FLAGS_MINSIZEREL"] = "/Os"
+            tc.variables["CMAKE_CXX_FLAGS_TEST"] = "/DEBUG /fsanitize=address /Oy"
+            tc.variables["CMAKE_CXX_FLAGS_PROFILE"] = "/GENPROFILE"
+            tc.variables["CMAKE_CXX_FLAGS_COVERAGE"] = "/O0"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_TEST"] = "/DEBUG /fsanitize=address /Oy"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_PROFILE"] = "/GENPROFILE"
+            tc.variables["CMAKE_EXE_LINKER_FLAGS_COVERAGE"] = "/O0"
+
         tc.generate()
+
+        cmake = CMakeDeps(self)
+        cmake.generate()
 
     def layout(self):
         self.folders.source = "."
-        self.folders.build = os.path.join("built", self.settings.get_safe("build_type"))
+        self.folders.build = "built"
         self.folders.generators = os.path.join(self.folders.build, "generators")
 
     def build(self):
-        # Map CMake configurations to CMake presets so presets can be used with Conan.
-        chosen_preset = self.settings.get_safe("build_type", default="default").lower()
-
-        self.run("cmake --preset %s" % (chosen_preset), cwd=self.source_folder)
-        self.run("cmake --build --preset %s" % (chosen_preset), cwd=self.source_folder)
+        self.run("cmake --preset conan-default -D BUILD_TESTING=OFF", cwd=self.source_folder)
+        self.run("cmake --build --preset conan-release --config Release", cwd=self.source_folder)
 
     def package(self):
         cmake = CMake(self)
