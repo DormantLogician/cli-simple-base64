@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.21)
 
 set(CMAKE_CONFIGURATION_TYPES Debug Release RelWithDebInfo MinSizeRel Test Profile Coverage)
 
+if (NOT GENERATOR_IS_MULTI_CONFIG AND NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
 project(csb64
     LANGUAGES CXX
     DESCRIPTION "Command line interface for sb64 base 64 encoder/decoder."
