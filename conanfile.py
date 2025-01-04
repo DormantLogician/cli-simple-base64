@@ -11,8 +11,7 @@ class ConfigConan(ConanFile):
     description = """Command line interface for sb64 base 64 encoder/decoder."""
     upload_policy = "skip"
 
-    # Must build DormantLogician's 'sb64' package from GitHub, install it locally using Conan, then add "sb64/1.0" (be sure to use latest version) to right of 'requires'.
-    requires = "boost/1.86.0", "sb64/1.0"
+    requires = "boost/1.86.0"
 
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
@@ -32,7 +31,7 @@ class ConfigConan(ConanFile):
         tc = CMakeToolchain(self)
 
         if self.settings.get_safe("compiler") == "clang":
-            tc.variables["CMAKE_CXX_FLAGS"] = "-fno-strict-overflow -fno-strict-aliasing -fno-delete-null-pointer-checks -Wuninitialized -Winit-self -fhardened"
+            tc.variables["CMAKE_CXX_FLAGS"] = "-fno-strict-overflow -fno-strict-aliasing -fno-delete-null-pointer-checks -Wuninitialized -Winit-self -D_FORTIFY_SOURCE=3 -D_GLIBCXX_ASSERTIONS -ftrivial-auto-var-init=zero -fPIE -fstack-protector-strong"
             tc.variables["CMAKE_CXX_FLAGS_DEBUG"] = "-g -O0"
             tc.variables["CMAKE_CXX_FLAGS_RELEASE"] = "-O2"
             tc.variables["CMAKE_CXX_FLAGS_RELWITHDEBINFO"] = "-g -O2"
@@ -45,7 +44,7 @@ class ConfigConan(ConanFile):
             tc.variables["CMAKE_EXE_LINKER_FLAGS_COVERAGE"] = "--coverage -O0"
 
         if self.settings.get_safe("compiler") == "gcc":
-            tc.variables["CMAKE_CXX_FLAGS"] = "-fno-strict-overflow -fno-strict-aliasing -fno-delete-null-pointer-checks -Wuninitialized -Winit-self -fhardened"
+            tc.variables["CMAKE_CXX_FLAGS"] = "-fno-strict-overflow -fno-strict-aliasing -fno-delete-null-pointer-checks -Wuninitialized -Winit-self -D_FORTIFY_SOURCE=3 -D_GLIBCXX_ASSERTIONS -ftrivial-auto-var-init=zero -fPIE -fstack-protector-strong"
             tc.variables["CMAKE_CXX_FLAGS_DEBUG"] = "-g -O0"
             tc.variables["CMAKE_CXX_FLAGS_RELEASE"] = "-O2"
             tc.variables["CMAKE_CXX_FLAGS_RELWITHDEBINFO"] = "-g -O2"
@@ -81,8 +80,9 @@ class ConfigConan(ConanFile):
         self.folders.generators = os.path.join(self.folders.build, "generators")
 
     def build(self):
-        self.run("cmake --preset conan-default -D BUILD_TESTING=OFF", cwd=self.source_folder)
-        self.run("cmake --build --preset conan-release --config Release", cwd=self.source_folder)
+        cmake = CMake(self)
+        cmake.configure()
+        cmake.build()
 
     def package(self):
         cmake = CMake(self)
