@@ -11,13 +11,16 @@ class ConfigConan(ConanFile):
     description = """Command line interface for sb64 base 64 encoder/decoder."""
     upload_policy = "skip"
 
-    requires = "boost/1.86.0"
-
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": False}
 
     exports_sources = "CMakeLists.txt", "CMakePresets.json", "LICENSE.txt", ".clang-tidy", "target/*", "util/*"
+
+    def requirements(self):
+        self.run("cmake -P util/task/setup_deps.cmake", cwd=self.source_folder)
+        self.requires("boost/1.86.0")
+        self.requires("sb64/1.0")
 
     def config_options(self):
         if self.settings.os == "Windows":
